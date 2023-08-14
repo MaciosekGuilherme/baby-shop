@@ -13,34 +13,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.store.marketbackend.entity.Categoria;
-import com.store.marketbackend.service.CategoriaService;
+import com.store.marketbackend.entity.Pessoa;
+import com.store.marketbackend.service.PessoaService;
+
+import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/api/categoria")
-public class CategoriaController {
+@RequestMapping("/api/pessoa")
+public class PessoaController {
     @Autowired
 
-    private CategoriaService categoriaService;
+    private PessoaService pessoaService;
 
     @GetMapping("/")
-    public List <Categoria> buscarTodos() {
-        return categoriaService.buscarTodos();
+    public List <Pessoa> buscarTodos() {
+        return pessoaService.buscarTodos();
     }
 
     @PostMapping("/")
-    public Categoria inserir (@RequestBody Categoria categoria) {
-        return categoriaService.inserir(categoria);
+    public Pessoa inserir(@Valid @RequestBody Pessoa pessoa){
+        return pessoaService.inserir(pessoa);
     }
 
     @PutMapping("/")
-    public Categoria alterar (@RequestBody Categoria categoria) {
-        return categoriaService.alterar(categoria);
+    public Pessoa alterar (@Valid @RequestBody Pessoa pessoa){
+        return pessoaService.alterar(pessoa);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> excluir (@PathVariable("id") Long id) {
-        categoriaService.excluir(id);
+        pessoaService.excluir(id);
         return ResponseEntity.ok().build();
-    } 
+    }
 }

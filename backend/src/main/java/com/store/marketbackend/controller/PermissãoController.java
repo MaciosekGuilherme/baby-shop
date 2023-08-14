@@ -13,34 +13,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.store.marketbackend.entity.Categoria;
-import com.store.marketbackend.service.CategoriaService;
+import com.store.marketbackend.entity.Permissão;
+import com.store.marketbackend.service.PermissãoService;
 
 @RestController
-@RequestMapping("/api/categoria")
-public class CategoriaController {
+@RequestMapping("/api/permissão")
+public class PermissãoController {
     @Autowired
 
-    private CategoriaService categoriaService;
+    private PermissãoService permissãoService;    
 
     @GetMapping("/")
-    public List <Categoria> buscarTodos() {
-        return categoriaService.buscarTodos();
-    }
-
-    @PostMapping("/")
-    public Categoria inserir (@RequestBody Categoria categoria) {
-        return categoriaService.inserir(categoria);
+    public List <Permissão> buscarTodos() {
+        return permissãoService.buscarTodos();
     }
 
     @PutMapping("/")
-    public Categoria alterar (@RequestBody Categoria categoria) {
-        return categoriaService.alterar(categoria);
+    public Permissão inserir(@RequestBody Permissão permissão) {
+        return permissãoService.inserir(permissão);
+    }
+
+    @PostMapping("/")
+    public Permissão alterar(@RequestBody Permissão permissão) {
+        return permissãoService.alterar(permissão);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> excluir (@PathVariable("id") Long id) {
-        categoriaService.excluir(id);
-        return ResponseEntity.ok().build();
-    } 
+    public ResponseEntity<Void> excluir(@PathVariable ("id") Long id) {
+        permissãoService.excluir(id);
+        return ResponseEntity.ok().build()
+;    }
+
 }
