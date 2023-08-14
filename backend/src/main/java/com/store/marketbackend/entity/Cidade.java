@@ -32,5 +32,4 @@ public class Cidade {
     private Timestamp dataCriacao;
     @Temporal(TemporalType.TIMESTAMP)
     private Timestamp dataAtualizacao;
-
 }
